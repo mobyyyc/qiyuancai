@@ -77,26 +77,27 @@ export default function Home() {
                     <span>{p.learned.join(" • ")}</span>
                   </div>
                 ) : null}
-                {/* place View Source at bottom of the card */}
+                {/* Buttons */}
                 <div className="mt-4 flex gap-2">
-                  {(p.repo ?? p.url) ? (
+                  {p.url && (
                     <a
                       className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-9 px-3"
-                      href={p.repo ?? p.url ?? '#'}
+                      href={p.url}
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <p className="text-sm text-muted-foreground">View Source</p>
+                      <span className="text-sm">Visit Website</span>
                     </a>
-                  ) : (
-                    <button
-                      type="button"
-                      disabled
-                      aria-disabled="true"
+                  )}
+                  {p.repo && (
+                    <a
                       className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-9 px-3"
+                      href={p.repo}
+                      target="_blank"
+                      rel="noreferrer"
                     >
-                      <span className="text-sm text-muted-foreground">View Source</span>
-                    </button>
+                      <span className="text-sm">View Source</span>
+                    </a>
                   )}
                 </div>
               </article>

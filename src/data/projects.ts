@@ -34,4 +34,14 @@ export const projects: Project[] = [
     url: null,
     repo: "https://github.com/mobyyyc/gemini-chatbot-demo",
   },
+  {
+    id: 3,
+    title: "Chord Studio",
+    subtitle: "React · Vite · Tone.js · Gemini API",
+    description: "A website that helps you play around with chords, identify chords from notes, and learn chord progressions. Features a 'Chord of the Day' showcase page.",
+    languages: ["TypeScript", "React", "Vite", "Tone.js", "Gemini API"],
+    learned: ["Google AI Studio", "Sound Implementation", "Animations"],
+    url: "https://minimalist-chord-studio-847933221896.us-west1.run.app",
+    repo: "https://github.com/mobyyyc/chord-studio",
+  },
 ];
