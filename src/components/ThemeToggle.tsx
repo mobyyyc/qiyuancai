@@ -26,7 +26,7 @@ export default function ThemeToggle(): React.ReactElement {
     root.classList.add(theme);
     try {
       window.localStorage.setItem("theme", theme);
-    } catch (e) {
+    } catch {
       // ignore quota errors
     }
   }, [theme]);
