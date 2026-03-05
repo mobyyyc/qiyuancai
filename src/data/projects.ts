@@ -43,13 +43,14 @@ export const projects: Project[] = [
   {
     id: 4,
     title: "Personal Website",
-    subtitle: "Next.js · Tailwind CSS · TypeScript",
-  description: "Personal website showcasing projects and contact information. Built with Next.js (App Router) and Tailwind CSS with a focus on fast static generation, responsive layouts, accessible components, and a theme toggle.",
-    languages: ["TypeScript", "Next.js", "Tailwind CSS"],
+    subtitle: "Next.js · Tailwind CSS · TypeScript · Three.js",
+    description: "Personal website showcasing projects and contact information. Built with Next.js (App Router), Tailwind CSS, and Three.js with a focus on fast static generation, responsive layouts, accessible components, and a theme toggle.",
+    languages: ["TypeScript", "Next.js", "Tailwind CSS", "Three.js"],
     learned: [
       "Static site generation",
       "Tailwind responsive layouts",
       "App Router patterns",
+      "Three.js background animation",
     ],
     url: null,
     repo: "https://github.com/mobyyyc/qiyuan-webpage",
