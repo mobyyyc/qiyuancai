@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111111;
-  --foreground: #171717;
+  --background: oklch(13% 0.01 274);
+  --foreground: oklch(94% 0.012 278);
+  --muted: oklch(72% 0.025 278);
+  --faint: oklch(58% 0.035 278);
+  --line: oklch(94% 0.012 278 / 0.14);
+  --surface: oklch(18% 0.018 274 / 0.76);
+  --surface-soft: oklch(23% 0.025 274 / 0.5);
+  --accent: oklch(68% 0.21 285);
+  --accent-blue: oklch(69% 0.18 238);
+  --shadow: 0 24px 90px oklch(5% 0.01 274 / 0.42);
 }
 
 @theme inline {
@@ -12,160 +20,474 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #111111;
-    --foreground: #ededed;
-  }
+html.light {
+  --background: oklch(98% 0.006 278);
+  --foreground: oklch(16% 0.012 278);
+  --muted: oklch(38% 0.035 278);
+  --faint: oklch(50% 0.04 278);
+  --line: oklch(16% 0.012 278 / 0.16);
+  --surface: oklch(99% 0.008 278 / 0.82);
+  --surface-soft: oklch(94% 0.025 278 / 0.58);
+  --accent: oklch(56% 0.22 286);
+  --accent-blue: oklch(57% 0.18 238);
+  --shadow: 0 28px 90px oklch(20% 0.02 278 / 0.13);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html.dark {
+  --background: oklch(13% 0.01 274);
+  --foreground: oklch(94% 0.012 278);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Theme classes applied to <html> by the ThemeToggle component */
-html.light {
-  --background: #ffffff;
-  --foreground: #000000;
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(120deg, oklch(38% 0.12 285 / 0.16), transparent 36%),
+    linear-gradient(240deg, oklch(48% 0.11 238 / 0.15), transparent 42%),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-html.dark {
-  --background: #111111;
-  --foreground: #ededed;
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 72%);
+  opacity: 0.22;
 }
 
-/* small theme toggle button */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: oklch(68% 0.21 285 / 0.32);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.brand-name {
+  justify-self: start;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+  letter-spacing: 0;
+}
+
+.site-nav {
+  display: flex;
+  gap: clamp(16px, 3vw, 34px);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-nav a,
+.project-links a,
+.contact-links a {
+  transition:
+    color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav a:hover,
+.project-links a:hover,
+.contact-links a:hover {
+  color: var(--foreground);
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
-  width: 36px;
-  border-radius: 9999px;
-  /* default border is neutral; individual theme classes can override */
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  background: var(--background);
+  justify-self: end;
+  width: 40px;
+  height: 40px;
   color: var(--foreground);
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .theme-toggle:hover {
-  filter: brightness(1.06);
+  transform: translateY(-2px);
+  background: var(--surface-soft);
 }
 
-/* Light mode: remove default border and show on hover */
-html.light .theme-toggle {
-  border: none;
+.site-shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 104px) 0 64px;
 }
 
-html.light .theme-toggle:hover {
-  border: 1px solid rgba(0, 0, 0, 0.08);
+.hero-section {
+  min-height: min(720px, calc(100vh - 90px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 56px);
 }
 
-/* Make borders more visible in light mode for site buttons and cards.
-   We target commonly-used component shapes so Tailwind utility classes still work,
-   but the color will be stronger in light mode to match dark-mode contrast. */
-html.light .rounded-full.border:not(.border-transparent) {
-  border-color: rgba(0, 0, 0, 0.12) !important;
+.hero-rule {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--foreground), transparent 78%);
+  opacity: 0.72;
 }
 
-html.light .rounded-lg.border,
-html.light article.rounded-lg.border {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+  gap: clamp(28px, 6vw, 86px);
+  align-items: end;
 }
 
-/* Ensure small buttons inside project cards also get a visible border in light mode */
-html.light .mt-5 .rounded-full.border,
-html.light .mt-5 button.rounded-full.border {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+.hero-copy h1,
+.section-grid h2,
+.section-heading h2,
+.contact-grid h2 {
+  max-width: 11ch;
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: 0;
 }
 
-/* Language badges: ensure high contrast in both themes. In light mode use pure black for text and a visible black border; in dark mode use white. */
-.language-badge {
+.hero-copy h1 {
+  margin: 0;
+  font-size: clamp(4rem, 13vw, 10.5rem);
+}
+
+.eyebrow,
+.section-label {
+  margin: 0;
+  color: var(--accent-blue);
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.hero-line {
+  max-width: 54ch;
+  margin: clamp(20px, 3vw, 32px) 0 0;
+  color: var(--muted);
+  font-size: clamp(1.08rem, 1.8vw, 1.45rem);
+  line-height: 1.7;
+}
+
+.hero-panel {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.hero-panel p {
+  margin: 0 0 18px;
+  color: var(--faint);
+  font-size: 0.84rem;
+}
+
+.hero-panel ul {
+  display: grid;
+  gap: 13px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hero-panel li {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.05rem, 2vw, 1.32rem);
+}
+
+.hero-panel li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  min-height: 46px;
+  padding: 0 22px;
+  font-weight: 650;
+  border: 1px solid var(--line);
+  transition:
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: var(--background);
+  background: var(--foreground);
+}
+
+.button-secondary {
   color: var(--foreground);
-  border-color: rgba(0, 0, 0, 0.06);
+  background: var(--surface);
 }
 
-html.light .language-badge {
-  /* solid black text and border in light mode */
-  color: #000000 !important;
-  border-color: #000000 !important;
+.content-band,
+.projects-section,
+.contact-section {
+  padding: clamp(56px, 9vw, 112px) 0;
+  border-top: 1px solid var(--line);
 }
 
-html.dark .language-badge {
-  /* white text and subtle white border in dark mode */
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.18) !important;
+.section-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1fr);
+  gap: clamp(24px, 5vw, 76px);
+  align-items: start;
+  margin-top: 18px;
 }
 
-/* Navbar: stronger bottom border in light mode to match dark-mode visibility */
-html.light header {
-  border-bottom-color: rgba(0, 0, 0, 0.12) !important;
+.section-grid h2,
+.section-heading h2,
+.contact-grid h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
 }
 
-/* Filled buttons (use bg-foreground) should change only background on hover in light mode,
-   keeping the text color the same (matches the dark-mode behavior). */
-html.light .bg-foreground:hover,
-html.light a.bg-foreground:hover,
-html.light button.bg-foreground:hover {
-  /* slightly lighter than pure black to show a hover state */
-  background-color: #2b2b2b !important;
-  color: var(--background) !important;
-  /* keep text color (usually white on dark buttons) */
+.section-grid p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.16rem);
+  line-height: 1.8;
 }
 
-/* Border-only rounded buttons should get a subtle background tint on hover in light mode */
-html.light .rounded-full.border:not(.border-transparent):hover,
-html.light a.rounded-full.border:not(.border-transparent):hover,
-html.light button.rounded-full.border:not(.border-transparent):hover {
-  background-color: #f2f2f2 !important;
-  color: inherit !important;
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(28px, 5vw, 56px);
 }
 
-/* Dark mode: make border-only buttons slightly lighter on hover (not darker)
-   so they stand out from the dark background without changing text color. */
-html.dark .rounded-full.border:not(.border-transparent):hover,
-html.dark a.rounded-full.border:not(.border-transparent):hover,
-html.dark button.rounded-full.border:not(.border-transparent):hover {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-  color: inherit !important;
+.project-list {
+  display: grid;
+  border-top: 1px solid var(--line);
 }
 
-/* Cards: no hover background change in light mode (hover only applies to buttons) */
-
-/* Light mode background gradient */
-html.light body {
-  background-color: #ffffff;
-  background-image: 
-    radial-gradient(circle at 0% 0%, rgba(210, 180, 255, 0.5) 0%, transparent 60%),
-    radial-gradient(circle at 100% 0%, rgba(255, 240, 180, 0.6) 0%, transparent 60%),
-    radial-gradient(circle at 0% 100%, rgba(255, 180, 210, 0.5) 0%, transparent 60%);
-  background-attachment: fixed;
-  background-size: 150% 150%;
-  animation: gradient-move 20s ease infinite;
+.project-item {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 54px);
+  padding: clamp(24px, 4.4vw, 46px) 0;
+  border-bottom: 1px solid var(--line);
 }
 
-/* Dark mode background gradient */
-html.dark body {
-  background-color: #111111;
-  background-image: 
-    radial-gradient(circle at 0% 0%, rgba(160, 100, 255, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 100% 0%, rgba(255, 220, 100, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 0% 100%, rgba(255, 100, 160, 0.25) 0%, transparent 50%);
-  background-attachment: fixed;
-  background-size: 150% 150%;
-  animation: gradient-move 20s ease infinite;
+.project-index {
+  color: var(--accent);
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
 }
 
-@keyframes gradient-move {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+.project-body {
+  display: grid;
+  gap: 16px;
+}
+
+.project-body h3 {
+  max-width: 22ch;
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.6rem, 3.4vw, 3.15rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.project-subtitle,
+.project-description,
+.learned-line {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.project-subtitle {
+  margin-top: 8px;
+  color: var(--accent-blue);
+  font-size: 0.92rem;
+}
+
+.language-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.language-row span {
+  padding: 7px 10px;
+  color: var(--foreground);
+  font-size: 0.78rem;
+  line-height: 1;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+}
+
+.project-links,
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.project-links a,
+.contact-links a {
+  padding-bottom: 5px;
+  color: var(--foreground);
+  font-weight: 650;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-links a:hover,
+.contact-links a:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.contact-section {
+  padding-bottom: clamp(80px, 12vw, 140px);
+}
+
+.contact-links {
+  align-self: end;
+}
+
+.reveal {
+  animation: reveal-up 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-delay-1 {
+  animation-delay: 120ms;
+}
+
+.reveal-delay-2 {
+  animation-delay: 220ms;
+}
+
+.reveal-delay-3 {
+  animation-delay: 320ms;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    row-gap: 14px;
+  }
+
+  .brand-name {
+    font-size: 1.45rem;
+  }
+
+  .site-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: start;
+    width: 100%;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding-top: 22px;
+  }
+
+  .hero-grid,
+  .section-grid,
+  .contact-grid,
+  .project-item {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(3.7rem, 19vw, 5.6rem);
+  }
+
+  .hero-panel {
+    padding: 18px;
+  }
+
+  .project-index {
+    font-size: 1rem;
+  }
 }
