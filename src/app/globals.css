@@ -275,6 +275,7 @@ a {
 }
 
 .content-band,
+.experience-section,
 .projects-section,
 .contact-section {
   padding: clamp(56px, 9vw, 112px) 0;
@@ -316,6 +317,74 @@ a {
 .project-list {
   display: grid;
   border-top: 1px solid var(--line);
+}
+
+.experience-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.32fr) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 54px);
+  padding: clamp(24px, 4.4vw, 46px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.experience-date,
+.experience-location,
+.experience-company {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.experience-date {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.experience-body {
+  display: grid;
+  gap: 14px;
+}
+
+.experience-body h3 {
+  max-width: 24ch;
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.55rem, 3vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.16;
+}
+
+.experience-body ul {
+  display: grid;
+  gap: 8px;
+  max-width: 68ch;
+  padding: 0;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+  list-style: none;
+}
+
+.experience-body li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.experience-body li::before {
+  position: absolute;
+  top: 0.78em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: linear-gradient(135deg, var(--accent), var(--accent-blue));
+  border-radius: 999px;
 }
 
 .project-item {
@@ -475,6 +544,7 @@ a {
   .hero-grid,
   .section-grid,
   .contact-grid,
+  .experience-item,
   .project-item {
     grid-template-columns: 1fr;
   }

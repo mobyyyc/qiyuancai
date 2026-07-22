@@ -23,7 +23,8 @@ const libreBaskerville = Libre_Baskerville({
 
 export const metadata: Metadata = {
   title: "Qiyuan Cai",
-  description: "Qiyuan Cai, software developer focused on AI and web systems.",
+  description:
+    "Qiyuan Cai, Waterloo Mathematics student focused on AI engineering, audio ML, and full-stack product systems.",
 };
 
 export default function RootLayout({

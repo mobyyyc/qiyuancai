@@ -1,12 +1,13 @@
 "use client";
 
 import React from "react";
+import { experience } from "../data/experience";
 import { projects } from "../data/projects";
 
 const focusItems = [
-  "AI product systems",
-  "Readable interfaces",
-  "Full-stack prototypes",
+  "AI engineering",
+  "Audio ML",
+  "Product systems",
 ];
 
 export default function Home() {
@@ -19,8 +20,8 @@ export default function Home() {
             <p className="eyebrow">Portfolio / 2026</p>
             <h1>Qiyuan Cai</h1>
             <p className="hero-line">
-              Software developer building AI tools, web systems, and polished
-              product experiences.
+              Waterloo Mathematics student building AI tools, audio ML systems,
+              and full-stack product experiences.
             </p>
           </div>
 
@@ -38,6 +39,9 @@ export default function Home() {
           <a className="button button-primary" href="#projects">
             Projects
           </a>
+          <a className="button button-secondary" href="#experience">
+            Experience
+          </a>
           <a className="button button-secondary" href="#contact">
             Contact
           </a>
@@ -49,14 +53,51 @@ export default function Home() {
         <div className="section-grid">
           <h2>I make technical ideas feel usable.</h2>
           <p>
-            I work across frontend, backend, and AI integration. My projects
-            explore planning agents, music tools, chat systems, and portfolio
-            interfaces with smooth motion and clear structure.
+            I study Honours Mathematics at the University of Waterloo. I work
+            across AI engineering, frontend systems, backend APIs, and data
+            tools.
           </p>
         </div>
       </section>
 
-      <section id="projects" className="projects-section reveal reveal-delay-2">
+      <section id="experience" className="experience-section reveal reveal-delay-2">
+        <div className="section-heading">
+          <p className="section-label">Experience</p>
+          <h2>Work</h2>
+        </div>
+
+        <div className="experience-list">
+          {experience.map((item) => (
+            <article key={item.id} className="experience-item">
+              <div>
+                <p className="experience-date">{item.date}</p>
+                <p className="experience-location">{item.location}</p>
+              </div>
+
+              <div className="experience-body">
+                <h3>{item.role}</h3>
+                <p className="experience-company">{item.company}</p>
+
+                {item.tools && item.tools.length > 0 ? (
+                  <div className="language-row">
+                    {item.tools.map((tool) => (
+                      <span key={tool}>{tool}</span>
+                    ))}
+                  </div>
+                ) : null}
+
+                <ul>
+                  {item.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="projects" className="projects-section reveal reveal-delay-3">
         <div className="section-heading">
           <p className="section-label">Selected work</p>
           <h2>Projects</h2>
@@ -111,7 +152,7 @@ export default function Home() {
         <div className="contact-grid">
           <h2>Let&apos;s build something precise.</h2>
           <div className="contact-links">
-            <a href="mailto:aly.moby@gmail.com">Email</a>
+            <a href="mailto:r34cai@uwaterloo.ca">Email</a>
             <a
               href="https://www.linkedin.com/in/qiyuancai/"
               target="_blank"
