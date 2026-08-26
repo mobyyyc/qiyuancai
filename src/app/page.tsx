@@ -6,7 +6,7 @@ import { projects } from "../data/projects";
 
 const focusItems = [
   "AI engineering",
-  "Audio ML",
+  "Quant research",
   "Product systems",
 ];
 
@@ -20,8 +20,8 @@ export default function Home() {
             <p className="eyebrow">Portfolio / 2026</p>
             <h1>Qiyuan Cai</h1>
             <p className="hero-line">
-              Waterloo Mathematics student building AI tools, audio ML systems,
-              and full-stack product experiences.
+              Waterloo Mathematics student building AI tools, quantitative
+              research software, and full-stack product experiences.
             </p>
           </div>
 
@@ -114,6 +114,14 @@ export default function Home() {
                 </div>
 
                 <p className="project-description">{project.description}</p>
+
+                {project.highlights && project.highlights.length > 0 ? (
+                  <ul className="project-highlights">
+                    {project.highlights.map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                ) : null}
 
                 {project.languages && project.languages.length > 0 ? (
                   <div className="language-row">

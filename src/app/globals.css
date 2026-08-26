@@ -360,7 +360,8 @@ a {
   line-height: 1.16;
 }
 
-.experience-body ul {
+.experience-body ul,
+.project-highlights {
   display: grid;
   gap: 8px;
   max-width: 68ch;
@@ -371,12 +372,14 @@ a {
   list-style: none;
 }
 
-.experience-body li {
+.experience-body li,
+.project-highlights li {
   position: relative;
   padding-left: 18px;
 }
 
-.experience-body li::before {
+.experience-body li::before,
+.project-highlights li::before {
   position: absolute;
   top: 0.78em;
   left: 0;

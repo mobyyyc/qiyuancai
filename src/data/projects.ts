@@ -4,6 +4,7 @@ export type Project = {
   subtitle?: string | null;
   description: string;
   languages?: string[];
+  highlights?: string[];
   learned?: string[];
   url?: string | null;
   repo?: string | null;
@@ -12,6 +13,36 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
+    title: "Quantrade",
+    subtitle:
+      "Next.js / TypeScript / Python / PostgreSQL / Alpaca APIs / SEC EDGAR",
+    description:
+      "A private quantitative equity research platform for ranking U.S. equities with point-in-time data safeguards and reproducible research workflows.",
+    languages: [
+      "Next.js",
+      "TypeScript",
+      "Python",
+      "PostgreSQL",
+      "Alpaca APIs",
+      "SEC EDGAR",
+    ],
+    highlights: [
+      "Built rankings, watchlists, company search, detail pages, historical price charts, score displays, keyboard search, and daily-update controls.",
+      "Designed an end-of-day pipeline for prices, benchmark data, corporate actions, SEC filing facts, dated score snapshots, and data lineage.",
+      "Backfilled a fixed current S&P 500 survivor cohort from 2021-2026 for private survivorship-biased Tier-B research.",
+      "Generated model-ready labels and trained a research-only elastic-net model on 341k+ examples with purged chronological validation.",
+    ],
+    learned: [
+      "point-in-time data",
+      "research governance",
+      "data provenance",
+      "quantitative ML workflows",
+    ],
+    url: null,
+    repo: "https://github.com/mobyyyc/Quantrade",
+  },
+  {
+    id: 2,
     title: "NeuroWave",
     subtitle: "Python / PyTorch / CNNs / Audio ML / Electron / Windows",
     description:
@@ -27,7 +58,7 @@ export const projects: Project[] = [
     repo: "https://github.com/mobyyyc/NeuroWave",
   },
   {
-    id: 2,
+    id: 3,
     title: "Versor Product Manager AI Agent",
     subtitle: "Next.js / TypeScript / PostgreSQL / LLM APIs / NextAuth / Zod",
     description:
@@ -36,27 +67,5 @@ export const projects: Project[] = [
     learned: ["LLM workflows", "CRUD APIs", "OAuth 2.0", "validated outputs"],
     url: "https://pm-agent-omega.vercel.app/",
     repo: "https://github.com/mobyyyc/pm-agent",
-  },
-  {
-    id: 3,
-    title: "Chord Studio",
-    subtitle: "TypeScript / Vite / LLM APIs / Cloud Deployment",
-    description:
-      "A responsive chord-detection app with music-aware LLM explanations and a playful learning flow for progressions.",
-    languages: ["TypeScript", "Vite", "LLM APIs", "Cloud Deployment"],
-    learned: ["music-aware prompts", "responsive UI", "deployment"],
-    url: "https://minimalist-chord-studio-847933221896.us-west1.run.app",
-    repo: "https://github.com/mobyyyc/chord-studio",
-  },
-  {
-    id: 4,
-    title: "Gemini Chatbot",
-    subtitle: "Next.js / AI Integration / Backend API",
-    description:
-      "A backend-focused AI project that connects the Gemini API to a web interface and manages request flow between client and server.",
-    languages: ["TypeScript", "Next.js", "Gemini API"],
-    learned: ["AI API integration", "client-server flow", "server logic"],
-    url: null,
-    repo: "https://github.com/mobyyyc/learn_chatbot",
   },
 ];

@@ -14,7 +14,7 @@ export const experience: Experience[] = [
     role: "Artificial Intelligence Engineer Intern",
     company: "ATM Capital",
     location: "Waterloo, ON (Remote)",
-    date: "May 2026 - Present",
+    date: "May 2026 - Aug 7, 2026",
     tools: ["OpenClaw", "Codex", "Claude Code", "Hermes", "Marvis"],
     highlights: [
       "Evaluate agentic coding tools for enterprise workflows.",
