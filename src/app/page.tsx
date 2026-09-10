@@ -20,7 +20,7 @@ export default function Home() {
             <p className="eyebrow">Portfolio / 2026</p>
             <h1>Qiyuan Cai</h1>
             <p className="hero-line">
-              Waterloo Mathematics student building AI tools, quantitative
+              Waterloo Computer Science student building AI tools, quantitative
               research software, and full-stack product experiences.
             </p>
           </div>
@@ -53,9 +53,9 @@ export default function Home() {
         <div className="section-grid">
           <h2>I make technical ideas feel usable.</h2>
           <p>
-            I study Honours Mathematics at the University of Waterloo. I work
-            across AI engineering, frontend systems, backend APIs, and data
-            tools.
+            I study Bachelor of Computer Science at the University of Waterloo,
+            majoring in Computer Science. I work across AI engineering,
+            frontend systems, backend APIs, and data tools.
           </p>
         </div>
       </section>
