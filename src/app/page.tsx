@@ -1,183 +1,87 @@
-"use client";
-
-import React from "react";
+import ScrollRuler from "../components/ScrollRuler";
 import { experience } from "../data/experience";
 import { projects } from "../data/projects";
 
-const focusItems = [
-  "AI engineering",
-  "Quant research",
-  "Product systems",
-];
+const webringDirectory = "https://cs.uwatering.com/#qiyuancai.vercel.app";
 
 export default function Home() {
   return (
-    <main className="site-shell">
-      <section className="hero-section reveal">
-        <div className="hero-rule" />
-        <div className="hero-grid">
-          <div className="hero-copy">
-            <p className="eyebrow">Portfolio / 2026</p>
-            <h1>Qiyuan Cai</h1>
-            <p className="hero-line">
-              Waterloo Computer Science student building AI tools, quantitative
-              research software, and full-stack product experiences.
-            </p>
-          </div>
-
-          <aside className="hero-panel" aria-label="Current focus">
-            <p>Current focus</p>
-            <ul>
-              {focusItems.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </aside>
-        </div>
-
-        <div className="hero-actions">
-          <a className="button button-primary" href="#projects">
-            Projects
-          </a>
-          <a className="button button-secondary" href="#experience">
-            Experience
-          </a>
-          <a className="button button-secondary" href="#contact">
-            Contact
-          </a>
-        </div>
-      </section>
-
-      <section id="about" className="content-band reveal reveal-delay-1">
-        <p className="section-label">About</p>
-        <div className="section-grid">
-          <h2>I make technical ideas feel usable.</h2>
+    <div className="site">
+      <ScrollRuler />
+      <main>
+        <header className="intro" id="intro">
+          <h1>Qiyuan Cai</h1>
           <p>
-            I study Bachelor of Computer Science at the University of Waterloo,
-            majoring in Computer Science. I work across AI engineering,
-            frontend systems, backend APIs, and data tools.
+            Computer Science, Artificial Intelligence Specialization
+            <br />
+            @ University of Waterloo.
           </p>
-        </div>
-      </section>
+        </header>
 
-      <section id="experience" className="experience-section reveal reveal-delay-2">
-        <div className="section-heading">
-          <p className="section-label">Experience</p>
-          <h2>Work</h2>
-        </div>
-
-        <div className="experience-list">
-          {experience.map((item) => (
-            <article key={item.id} className="experience-item">
-              <div>
-                <p className="experience-date">{item.date}</p>
-                <p className="experience-location">{item.location}</p>
-              </div>
-
-              <div className="experience-body">
-                <h3>{item.role}</h3>
-                <p className="experience-company">{item.company}</p>
-
-                {item.tools && item.tools.length > 0 ? (
-                  <div className="language-row">
-                    {item.tools.map((tool) => (
-                      <span key={tool}>{tool}</span>
-                    ))}
-                  </div>
-                ) : null}
-
-                <ul>
-                  {item.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="projects" className="projects-section reveal reveal-delay-3">
-        <div className="section-heading">
-          <p className="section-label">Selected work</p>
-          <h2>Projects</h2>
-        </div>
-
-        <div className="project-list">
-          {(projects ?? []).map((project, index) => (
-            <article key={project.id} className="project-item">
-              <div className="project-index">{String(index + 1).padStart(2, "0")}</div>
-              <div className="project-body">
-                <div>
+        <section className="section" id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title">Projects</h2>
+          <ul className="entries" role="list">
+            {projects.map((project) => (
+              <li key={project.title}>
+                <div className="entry-heading">
                   <h3>{project.title}</h3>
-                  {project.subtitle ? <p className="project-subtitle">{project.subtitle}</p> : null}
-                </div>
-
-                <p className="project-description">{project.description}</p>
-
-                {project.highlights && project.highlights.length > 0 ? (
-                  <ul className="project-highlights">
-                    {project.highlights.map((highlight) => (
-                      <li key={highlight}>{highlight}</li>
-                    ))}
-                  </ul>
-                ) : null}
-
-                {project.languages && project.languages.length > 0 ? (
-                  <div className="language-row">
-                    {project.languages.map((language) => (
-                      <span key={language}>{language}</span>
-                    ))}
+                  <div className="links entry-links">
+                    <a href={project.repo} aria-label={`${project.title} on GitHub`}>
+                      GitHub
+                    </a>
+                    {project.url ? (
+                      <a href={project.url} aria-label={`${project.title} website`}>
+                        Website
+                      </a>
+                    ) : null}
                   </div>
-                ) : null}
-
-                {project.learned && project.learned.length > 0 ? (
-                  <p className="learned-line">
-                    Learned: {project.learned.join(", ")}
-                  </p>
-                ) : null}
-
-                <div className="project-links">
-                  {project.url ? (
-                    <a href={project.url} target="_blank" rel="noreferrer">
-                      Visit
-                    </a>
-                  ) : null}
-                  {project.repo ? (
-                    <a href={project.repo} target="_blank" rel="noreferrer">
-                      Source
-                    </a>
-                  ) : null}
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+                <p>{project.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      <section id="contact" className="contact-section reveal reveal-delay-3">
-        <p className="section-label">Contact</p>
-        <div className="contact-grid">
-          <h2>Let&apos;s build something precise.</h2>
-          <div className="contact-links">
-            <a href="mailto:r34cai@uwaterloo.ca">Email</a>
-            <a
-              href="https://www.linkedin.com/in/qiyuancai/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/mobyyyc"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
+        <section
+          className="section"
+          id="experience"
+          aria-labelledby="experience-title"
+        >
+          <h2 id="experience-title">Experience</h2>
+          <ul className="entries" role="list">
+            {experience.map((item) => (
+              <li key={item.organization}>
+                <div className="entry-heading">
+                  <h3>{item.organization}</h3>
+                  <p className="entry-date">{item.date}</p>
+                </div>
+                <p className="entry-role">{item.role}</p>
+                <p>{item.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </main>
+
+      <footer className="section" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact</h2>
+        <div className="contact-content">
+          <div className="contact-row">
+            <div className="links contact-links">
+              <a href="mailto:qiyuan.cai@uwaterloo.ca">Email</a>
+              <a href="https://www.linkedin.com/in/qiyuancai/">LinkedIn</a>
+              <a href="https://github.com/mobyyyc">GitHub</a>
+            </div>
+            <nav className="webring" aria-label="Waterloo CS Webring">
+              <a href={`${webringDirectory}?nav=prev`} aria-label="Previous Webring site">←</a>
+              <a href={webringDirectory} aria-label="Waterloo CS Webring directory">
+                <span className="webring-lion" aria-hidden="true" />
+              </a>
+              <a href={`${webringDirectory}?nav=next`} aria-label="Next Webring site">→</a>
+            </nav>
           </div>
         </div>
-      </section>
-    </main>
+      </footer>
+    </div>
   );
 }

@@ -1,71 +1,35 @@
-export type Project = {
-  id: number;
+type Project = {
   title: string;
-  subtitle?: string | null;
   description: string;
-  languages?: string[];
-  highlights?: string[];
-  learned?: string[];
-  url?: string | null;
-  repo?: string | null;
+  repo: string;
+  url?: string;
 };
 
 export const projects: Project[] = [
   {
-    id: 1,
-    title: "Quantrade",
-    subtitle:
-      "Next.js / TypeScript / Python / PostgreSQL / Alpaca APIs / SEC EDGAR",
+    title: "Sliplet",
     description:
-      "A private quantitative equity research platform for ranking U.S. equities with point-in-time data safeguards and reproducible research workflows.",
-    languages: [
-      "Next.js",
-      "TypeScript",
-      "Python",
-      "PostgreSQL",
-      "Alpaca APIs",
-      "SEC EDGAR",
-    ],
-    highlights: [
-      "Built rankings, watchlists, company search, detail pages, historical price charts, score displays, keyboard search, and daily-update controls.",
-      "Designed an end-of-day pipeline for prices, benchmark data, corporate actions, SEC filing facts, dated score snapshots, and data lineage.",
-      "Backfilled a fixed current S&P 500 survivor cohort from 2021-2026 for private survivorship-biased Tier-B research.",
-      "Generated model-ready labels and trained a research-only elastic-net model on 341k+ examples with purged chronological validation.",
-    ],
-    learned: [
-      "point-in-time data",
-      "research governance",
-      "data provenance",
-      "quantitative ML workflows",
-    ],
-    url: null,
+      "An iOS app that reads receipts on-device, lets you split a bill by item, and makes past purchases searchable.",
+    repo: "https://github.com/mobyyyc/Sliplet",
+  },
+  {
+    title: "Quantrade",
+    description:
+      "A private research platform for ranking U.S. equities using prices and SEC filings as they were available at the time.",
     repo: "https://github.com/mobyyyc/Quantrade",
   },
   {
-    id: 2,
     title: "NeuroWave",
-    subtitle: "Python / PyTorch / CNNs / Audio ML / Electron / Windows",
     description:
-      "A Windows audio-to-synth research tool that predicts editable synthesizer parameters from clean, one-note WAV clips.",
-    languages: ["Python", "PyTorch", "CNNs", "Audio ML", "Electron", "Windows"],
-    learned: [
-      "CNN inference",
-      "synth patch generation",
-      "spectrogram comparison",
-      "JSON and WAV export",
-    ],
-    url: "https://website-seven-mu-31.vercel.app/",
+      "A Windows research tool that turns a recording of one note into an editable synth patch using a PyTorch model.",
     repo: "https://github.com/mobyyyc/NeuroWave",
+    url: "https://website-seven-mu-31.vercel.app/",
   },
   {
-    id: 3,
-    title: "Versor Product Manager AI Agent",
-    subtitle: "Next.js / TypeScript / PostgreSQL / LLM APIs / NextAuth / Zod",
+    title: "Versor PM Agent",
     description:
-      "A full-stack AI planning platform that generates and refines structured project timelines through contextual LLM workflows.",
-    languages: ["Next.js", "TypeScript", "PostgreSQL", "NeonDB", "NextAuth", "Zod"],
-    learned: ["LLM workflows", "CRUD APIs", "OAuth 2.0", "validated outputs"],
-    url: "https://pm-agent-omega.vercel.app/",
+      "An AI project planner that builds timelines and uses GitHub activity to flag delivery risks for human review.",
     repo: "https://github.com/mobyyyc/pm-agent",
+    url: "https://pm-agent-omega.vercel.app/",
   },
 ];

@@ -1,36 +1,30 @@
-export type Experience = {
-  id: number;
+type Experience = {
+  organization: string;
   role: string;
-  company: string;
-  location: string;
   date: string;
-  tools?: string[];
-  highlights: string[];
+  description: string;
 };
 
 export const experience: Experience[] = [
   {
-    id: 1,
+    organization: "ATM Capital",
     role: "Artificial Intelligence Engineer Intern",
-    company: "ATM Capital",
-    location: "Waterloo, ON (Remote)",
-    date: "May 2026 - Aug 7, 2026",
-    tools: ["OpenClaw", "Codex", "Claude Code", "Hermes", "Marvis"],
-    highlights: [
-      "Evaluate agentic coding tools for enterprise workflows.",
-      "Test deployment, orchestration, cost, stability, permissions, and cross-device constraints.",
-    ],
+    date: "May–Aug 2026",
+    description:
+      "Evaluated coding agents for enterprise use, comparing deployment, orchestration, cost, reliability, and permissions.",
   },
   {
-    id: 2,
+    organization: "DataOnDemand",
     role: "Business Intelligence Engineer Intern",
-    company: "DataOnDemand",
-    location: "Beijing",
-    date: "Jul 2025 - Aug 2025",
-    tools: ["Power BI", "Strategy One", "Data Analysis", "Dashboard Design"],
-    highlights: [
-      "Built HR dashboards for performance, department mix, and turnover analysis.",
-      "Designed reporting views for internal stakeholders.",
-    ],
+    date: "Jul–Aug 2025",
+    description:
+      "Built Power BI and Strategy One dashboards to track employee performance, department composition, and turnover.",
+  },
+  {
+    organization: "HSC String Ensemble",
+    role: "Founder & Music Director",
+    date: "Sep 2023–May 2025",
+    description:
+      "Started a student string ensemble and led recruitment, rehearsals, and school performances.",
   },
 ];

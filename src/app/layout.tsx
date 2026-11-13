@@ -1,30 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/Navbar";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import ThreeWaveBackground from "../components/ThreeWaveBackground";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Qiyuan Cai",
   description:
-    "Qiyuan Cai, Waterloo Computer Science student focused on AI engineering, quantitative research software, and full-stack product systems.",
+    "Qiyuan Cai, a computer science student at the University of Waterloo. Projects in quantitative research, machine learning, and iOS.",
 };
 
 export default function RootLayout({
@@ -34,14 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${libreBaskerville.variable} antialiased`}
-      >
-        <ThreeWaveBackground />
-        <Navbar />
-        {children}
-        <SpeedInsights />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
