@@ -4,12 +4,13 @@ import { useEffect, useRef, useState, type PointerEvent } from "react";
 
 const sections = [
   { id: "intro", label: "Home" },
+  { id: "about", label: "About" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
 
-const ticksPerSection = 12;
+const ticksPerSection = 9;
 const intervals = (sections.length - 1) * ticksPerSection;
 const ticks = Array.from({ length: intervals + 1 }, (_, index) => index);
 
@@ -34,23 +35,20 @@ export default function ScrollRuler() {
         return;
       }
 
-      // Keep the last section reachable when it is shorter than the viewport.
       if (maxScroll > 1 && window.scrollY >= maxScroll - 1) {
-        setActive(sections[sections.length - 1].id);
+        // Several short sections can share the same final anchor position.
+        const linked = targets.find((target) => {
+          if (window.location.hash !== `#${target.id}`) return false;
+          const margin = parseFloat(getComputedStyle(target).scrollMarginTop);
+          return target.getBoundingClientRect().top >= margin - 1;
+        });
+        setActive(linked?.id ?? sections[sections.length - 1].id);
         return;
       }
 
-      let mostVisible = 0;
-      let current = sections[0].id;
-      targets.forEach((target) => {
-        const { top, bottom } = target.getBoundingClientRect();
-        const visible = Math.min(bottom, viewport.clientHeight) - Math.max(top, 0);
-        if (visible > mostVisible) {
-          mostVisible = visible;
-          current = target.id;
-        }
-      });
-      setActive(current);
+      const readingLine = Math.min(viewport.clientHeight * 0.2, 144);
+      const current = targets.findLast((target) => target.getBoundingClientRect().top <= readingLine);
+      setActive(current?.id ?? sections[0].id);
     }
 
     function schedule() {
